@@ -80,4 +80,21 @@ const loginUser = async (req, res) => {
   }
 };
 
+const registerUser = async (req, res) => {
+  try {
+    const { username, password, email, role } = req.body;
+
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email is already in use' });
+    }
+
+    const user = await User.create({ username, password, email, role });
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 module.exports = { getAllUsers, createUser, updateUser, deleteUser, loginUser };
