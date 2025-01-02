@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <p>test</p>
+      <p className="text-3xl font-bold underline bg-yellow-50">test</p>
     </>
   )
 }
